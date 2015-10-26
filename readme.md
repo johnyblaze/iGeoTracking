@@ -12,6 +12,7 @@ Laravel is accessible, yet powerful, providing powerful tools needed for large, 
 
 ## Information
 Database also uploaded in sql folder, use the same name and execute that file on your host.
+DB_DATABASE=igeo_tracking
 
 ## Official Documentation
 
