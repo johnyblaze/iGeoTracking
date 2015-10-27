@@ -1,31 +1,43 @@
 ## iGeo Tracking 
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## MongoDB Help
+1- mongo
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+2- show dbs; 
+This will show the all databases in the system
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+3- use dbName;
+This will help in choosing DB for the system
 
-## Information
-Database also uploaded in sql folder, use the same name and execute that file on your host.
-DB_DATABASE=igeo_tracking
+4- db.getCollectionNames();
+This will show all collection
 
-## Official Documentation
+5- db.car.find().pretty() 
+To show car collections in human readable formate
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
+6- db.car.find({imei:"2547845"},{imei : 1, _id:0}) 
+This will show only imei of document which have imei = to 2547845
 
-## Contributing
+7- db.car.insert({imei:457845,model:2010,company:Honda}) 
+Insert use to enter records
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
+8- db.car.find({created_at:{$gt:45454}}).limit(10) 
+To get all records generated after this day
 
-## Security Vulnerabilities
+9- db.car.find({$or[{imei:32222},{model:2015}]}).pretty() 
+Mongo OR operator
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
+10- db.car.find({$and[{imei:32222},{model:2015}]}).pretty() 
+Mongo AND operator
 
-### License
+11- db.car.find({imei:{$not:/25454/}}).pretty() 
+Mongo NOT operator 
 
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+12- db.car.find({speed:{$exist : true}}) 
+To check if specific key exist in the document
+
+13- db.car.find({}, {speed:true,_id:false}),sort({speed:1}) 
+Sort Ascending
+
+14- db.car.find({}, {speed:true,_id:false}),sort({speed:-1}) 
+Sort Descending
