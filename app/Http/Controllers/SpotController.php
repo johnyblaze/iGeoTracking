@@ -19,6 +19,23 @@ class SpotController extends Controller {
    */
   public function create()
   {
+    // MongoDB Code Start
+    
+    $mongoObj = new \MongoClient();
+    $db = $mongoObj->iGeoTrack;
+    $collection = $db->spot;
+    $imei = '356173061003245'; // $imei = $_GET['item_id'] but we have no refernce to 'car' that's why for the time being I addd static 
+    $date = $_GET['date'];
+    $cursor = $collection->find(array( '$and' => array( array('imei' => $imei),array('time'=>array( '$gt' => $date)))))->count();
+    $this->mongoLngArray = array();
+    $this->mongoLatArray = array();
+    foreach ($cursor as $document) {
+      $this->mongoLngArray = $document['lng'];
+      $this->mongoLatArray = $document['lat'];
+    }
+    
+    // MongoDB code End
+    
     $this->findDateSpecificDistance = Spot::whereImei($_GET['item_id'])->where('created_at',">=",$_GET['date'])->get();
     $this->lngArray = array();
     $this->latArray = array();

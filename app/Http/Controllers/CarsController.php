@@ -9,6 +9,18 @@ class CarsController extends Controller {
   */
   public function index()
   {
+    // MongoDB code Start
+
+    $m = new \MongoClient();
+    $db = $m->iGeoTrack;
+    $collection = $db->car;
+    $cursor = $collection->find();
+    foreach ($cursor as $document) {
+      // same as in $cars forach loop below
+    }
+    
+    // MongoDB code End
+
     $cars = Cars::all();
     $carsData = array();
     foreach ($cars as $key => $car) {
